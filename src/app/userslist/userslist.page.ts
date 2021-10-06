@@ -8,12 +8,15 @@ import { HttpClient } from "@angular/common/http"
 })
 export class UserslistPage implements OnInit {
 
+  characters = [];
+
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.httpClient.get("https://rickandmortyapi.com/api/character")
+    this.httpClient.get<any>("https://rickandmortyapi.com/api/character")
         .subscribe(res => {
           console.log(res);
+          this.characters = res.results;
         })
   }
 
